@@ -1,14 +1,17 @@
 "use client";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-
-const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-export function Providers({ children }, googleClientId = { googleClientId }) {
-
+export function Providers({ children }) {
+    const googleclienid = process.env.REACT_APP_GOOGLE_CLIENT_ID
+    { console.log(googleclienid) }
     return (
-        <GoogleOAuthProvider clientId={googleClientId}>
+        // add google provider with clientId from .env.local file 
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+            {console.log(googleclienid)}
             {children}
         </GoogleOAuthProvider>
+
+
     )
 }
 
