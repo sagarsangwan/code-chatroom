@@ -1,5 +1,5 @@
 "use client";
-
+import { Button } from '@/components/ui/button';
 import { useGoogleLogin } from '@react-oauth/google';
 
 export default function Googlelogin() {
@@ -7,8 +7,6 @@ export default function Googlelogin() {
         onSuccess: tokenResponse => console.log(tokenResponse),
     });
     return (
-        <button onClick={() => login()}>
-            Sign in with Google 🚀
-        </button>
+        <Button onClick={() => login()}>Sign in with Google 🚀</Button>
     );
 }
