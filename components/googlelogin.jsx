@@ -30,6 +30,7 @@ export default function Googlelogin() {
         localStorage.setItem("access_token", dataFromApi.access_token);
         localStorage.setItem("refresh_token", dataFromApi.refresh_token);
         console.log(dataFromApi.access_token)
+        window.location.href = "/"
     }
     const login = useGoogleLogin({
         onSuccess: tokenResponse => handleGoogleLogin(tokenResponse),

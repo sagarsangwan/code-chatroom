@@ -3,10 +3,18 @@
 import * as React from "react"
 import Link from "next/link"
 import { useUser } from "@/context/user-context";
-
+import Googlelogin from "@/components/googlelogin";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "@/components/modetoggle";
-// import { IoIosMenu } from "react-icons/io";
 import { IoIosMenu } from "react-icons/io";
+import { Button } from "@/components/ui/button";
+import { Logout } from "@/components/google-logout";
 
 export default function Navbar() {
     const [state, setState] = React.useState(false)
@@ -19,7 +27,7 @@ export default function Navbar() {
     ]
 
     return (
-        <nav className=" border-slate-200 container border mt-5">
+        <nav className="  container  mt-5">
             <div className="items-center max-w-screen-xl mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
                     <Link href="/">
@@ -41,15 +49,40 @@ export default function Navbar() {
                     className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${state ? "block" : "hidden"
                         }`}
                 >
-                    <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+                    <ul className="justify-end items-end space-y-8 md:flex md:space-x-6 md:space-y-0">
                         {menus.map((item, idx) => (
                             <li key={idx} className="text-gray-400 hover:bg-secondary/80">
                                 <Link href={item.path}>{item.title}</Link>
                             </li>
                         ))}
-                        <li className="text-gray-400 hover:bg-secondary/80">
+                        <li className="text-gray-400 hover:bg-secondary/80 ">
                             <ModeToggle />
                         </li>
+                        {user.username ? (
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+
+
+                                    <Avatar>
+                                        <AvatarFallback>JD</AvatarFallback>
+                                        <AvatarImage src={user.user_profile.picture} />
+
+
+                                    </Avatar>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuItem>
+                                        <Link href="/profile">Profile</Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Button onClick={() => Logout()}>Logout</Button>
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+
+                        ) : (
+                            <Googlelogin />
+                        )}
                     </ul>
                 </div>
             </div>
