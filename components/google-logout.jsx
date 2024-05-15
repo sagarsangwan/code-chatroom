@@ -12,6 +12,7 @@ export function Logout() {
     }
     catch (error) {
         console.log(error)
+
     }
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");

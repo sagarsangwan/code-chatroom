@@ -4,10 +4,10 @@ import { useGoogleLogin } from '@react-oauth/google';
 
 export default function Googlelogin() {
 
-    const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
     const drfClientId = process.env.NEXT_PUBLIC_DRF_CLIENT_ID;
     const drfClientSecret = process.env.NEXT_PUBLIC_DRF_CLIENT_SECRET;
-    const baseURL = "http://127.0.0.1:8000";
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+    console.log(baseURL, "baseurl from googlelogin")
     async function handleGoogleLogin(credentialResponse) {
         const backend = "google-oauth2";
         const grant_type = "convert_token";
@@ -31,6 +31,7 @@ export default function Googlelogin() {
         localStorage.setItem("refresh_token", dataFromApi.refresh_token);
         console.log(dataFromApi.access_token)
         window.location.href = "/"
+
     }
     const login = useGoogleLogin({
         onSuccess: tokenResponse => handleGoogleLogin(tokenResponse),

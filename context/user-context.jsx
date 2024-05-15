@@ -7,7 +7,10 @@ const drfClientId = process.env.NEXT_PUBLIC_DRF_CLIENT_ID;
 const drfClientSecret = process.env.NEXT_PUBLIC_DRF_CLIENT_SECRET;
 
 
-const baseURL = "http://127.0.0.1:8000";
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+console.log(baseURL,
+    "baseurl from user-context"
+)
 async function refreshUserToken() {
     const grant_type = "refresh_token";
     const dateToSend = {
