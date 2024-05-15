@@ -1,8 +1,6 @@
-
-import React from 'react'
+"use client"
 import axios from "axios";
 const baseurl = process.env.NEXT_PUBLIC_BASE_URL;
-console.log(baseurl, "baseurl from authservice")
 const instance = axios.create({
     baseURL: baseurl,
     headers: {

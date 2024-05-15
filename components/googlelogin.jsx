@@ -7,7 +7,6 @@ export default function Googlelogin() {
     const drfClientId = process.env.NEXT_PUBLIC_DRF_CLIENT_ID;
     const drfClientSecret = process.env.NEXT_PUBLIC_DRF_CLIENT_SECRET;
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
-    console.log(baseURL, "baseurl from googlelogin")
     async function handleGoogleLogin(credentialResponse) {
         const backend = "google-oauth2";
         const grant_type = "convert_token";
