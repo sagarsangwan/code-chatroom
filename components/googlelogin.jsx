@@ -37,7 +37,9 @@ export default function Googlelogin() {
         else {
             console.log("error");
             console.log(dataFromApi);
-            // redirect to homepage and add a toast notification using shadcn toast on homepage
+            window.location.href = "/?error=login";
+
+
 
         }
 
