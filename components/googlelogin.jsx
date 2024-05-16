@@ -26,10 +26,26 @@ export default function Googlelogin() {
             body: newStringData,
         });
         const dataFromApi = await response.json();
-        localStorage.setItem("access_token", dataFromApi.access_token);
-        localStorage.setItem("refresh_token", dataFromApi.refresh_token);
-        console.log(dataFromApi.access_token)
-        window.location.href = "/"
+        // errror handling
+        if (response.status === 200) {
+            const accessToken = dataFromApi.access_token;
+            const refreshToken = dataFromApi.refresh_token;
+            localStorage.setItem("access_token", accessToken);
+            localStorage.setItem("refresh_token", refreshToken);
+            window.location.href = "/";
+        }
+        else {
+            console.log("error");
+            console.log(dataFromApi);
+            // redirect to homepage and add a toast notification using shadcn toast on homepage
+
+        }
+
+
+
+
+
+
 
     }
     const login = useGoogleLogin({
