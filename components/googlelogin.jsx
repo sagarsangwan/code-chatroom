@@ -21,7 +21,7 @@ export default function Googlelogin() {
         const response = await fetch(`${baseURL}/auth/convert-token`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': process.env.NEXT_PUBLIC_CONTENT_TYPE,
             },
             body: newStringData,
         });
