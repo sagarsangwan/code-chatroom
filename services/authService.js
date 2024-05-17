@@ -15,3 +15,11 @@ const instance = axios.create({
 
 
 export default instance;
+// export baseurl;
+// export async function getrooms() {
+//     const res = await instance.get('/api/coderoom/');
+//     if (!res.ok) {
+//         throw new Error('Failed to fetch data');
+//     }
+//     return await res.data;
+// }
