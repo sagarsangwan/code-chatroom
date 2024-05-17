@@ -1,8 +1,8 @@
 // import { useEffect, } from "react"
 // "use client"
 export async function getrooms() {
-    BASEURL = process.env.NEXT_PUBLIC_BASE_URL || "http://127.0.0.1:8000"
-    const res = await fetch(`${BASEURL}/api/coderoom/`);
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+    const res = await fetch(`${baseURL}/api/coderoom/`);
     if (!res.ok) {
         throw new Error('Failed to fetch data');
     }
