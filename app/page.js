@@ -26,7 +26,7 @@ function RoomCard({ room }) {
         </Link>
       </CardContent>
       <CardFooter>
-        <Button > <Link href={`/rooms/${room.slug}`}> Join Room</Link></Button>
+        <Button > <Link href={`/rooms/${room.id}`}> Join Room</Link></Button>
       </CardFooter>
     </Card>
   )

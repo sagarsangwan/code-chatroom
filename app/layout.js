@@ -4,6 +4,8 @@ import { Providers } from "./providers";
 import Navbar from "@/components/ui/navbar";
 // const inter = Inter({ subsets: ["latin"] });
 import { Toaster } from "@/components/ui/toaster"
+import NextTopLoader from 'nextjs-toploader';
+
 export const metadata = {
   title: "HOME | Code ChatRoom",
   description: "Code ChatRoom is a chat application for developers to chat and share code snippets.",
@@ -16,6 +18,7 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning={true}>
         <Providers>
           <Navbar />
+          <NextTopLoader />
           {children}
           <Toaster />
         </Providers>
