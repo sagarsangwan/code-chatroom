@@ -36,7 +36,6 @@ export default async function Home() {
   let rooms;
   try {
     rooms = await getrooms()
-    console.log(rooms)
 
   } catch (error) {
     console.log(error)
