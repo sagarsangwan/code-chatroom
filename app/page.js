@@ -1,45 +1,18 @@
 import { getrooms } from "../lib/data-access/rooms";
-import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
+import RoomCard from "@/components/roomCard";
 
 
-function RoomCard({ room }) {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-xl">{room.name}</CardTitle>
-        <CardDescription>{room.description}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Link href={room.github_repo} className="flex items-center gap-2">
-          Github Repo
-          <FaGithub />
-        </Link>
-      </CardContent>
-      <CardFooter>
-        <Button > <Link href={`/rooms/${room.id}`}> Join Room</Link></Button>
-      </CardFooter>
-    </Card>
-  )
-}
 
 export default async function Home() {
+
   let rooms;
   try {
     rooms = await getrooms()
 
   } catch (error) {
     console.log(error)
-
   }
 
 
@@ -61,11 +34,6 @@ export default async function Home() {
         }
 
       </div>
-
-
-
-
-
     </main>
   );
 }
