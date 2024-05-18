@@ -5,6 +5,8 @@ import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
+
 import {
     Form,
     FormControl,
@@ -64,7 +66,8 @@ export function CreateRoomForm() {
     }
     return (
         isLoading ? (
-            <div>Loading...</div> // This is the loader
+            <Skeleton className="w-[100px] h-[20px] rounded-full" />
+
         ) : (
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} >
