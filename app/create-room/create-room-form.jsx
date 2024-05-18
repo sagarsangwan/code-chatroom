@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-
+import PostData from "@/lib/data-access/postRoom"
 
 
 
@@ -38,9 +38,9 @@ export function CreateRoomForm() {
         },
     })
 
-    function onSubmit(values) {
-
-
+    async function onSubmit(values) {
+        const res = await PostData(values)
+        console.log(res)
     }
     return (
         <Form {...form}>
