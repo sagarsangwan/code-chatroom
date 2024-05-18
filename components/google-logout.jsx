@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "./ui/button";
-import instance from "@/services/authService";
+import instance from "@/lib/services/authService";
 export function Logout() {
     const drfClientId = process.env.NEXT_PUBLIC_DRF_CLIENT_ID;
     const dateToSend = {

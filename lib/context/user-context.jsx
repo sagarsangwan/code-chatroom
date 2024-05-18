@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from 'react';
-import instance from "@/services/authService";
+import instance from "@/lib/services/authService";
 import React from 'react';
 const drfClientId = process.env.NEXT_PUBLIC_DRF_CLIENT_ID;
 

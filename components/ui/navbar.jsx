@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { useUser } from "@/context/user-context";
+import { useUser } from "@/lib/context/user-context";
 import Googlelogin from "@/components/googlelogin";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {

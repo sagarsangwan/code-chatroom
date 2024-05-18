@@ -2,7 +2,7 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { UserProvider } from '@/context/user-context';
+import { UserProvider } from '@/lib/context/user-context';
 export function Providers({ children }) {
     return (
         // add google provider with clientId from .env.local file 
