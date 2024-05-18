@@ -6,7 +6,7 @@ import RoomCard from "@/components/roomCard";
 
 
 export default async function Home() {
-
+  const addbuttonornot = "true";
   let rooms;
   try {
     rooms = await getrooms()
@@ -29,7 +29,8 @@ export default async function Home() {
 
         {
           rooms.map((room) => {
-            return <RoomCard key={room.id} room={room} />
+            // pass the addbuttonornot as yes or no to the room card component
+            return <RoomCard key={room.id} room={room} addbuttonornot={true} />
           })
         }
 

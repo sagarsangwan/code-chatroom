@@ -12,8 +12,9 @@ import {
 } from "@/components/ui/card"
 import { CiEdit } from "react-icons/ci";
 import { FaGithub } from "react-icons/fa";
-function RoomCard({ room }) {
+function RoomCard({ room, addbuttonornot }) {
     // const { current_user } = useUser();
+    console.log(addbuttonornot)
     return (
         <Card>
             <CardHeader>
@@ -29,9 +30,10 @@ function RoomCard({ room }) {
                     <FaGithub />
                 </Link>
             </CardContent>
-            <CardFooter>
-                <Button > <Link href={`/rooms/${room.id}`}> Join Room</Link></Button>
-            </CardFooter>
+            {addbuttonornot &&
+                <CardFooter>
+                    <Button > <Link href={`/rooms/${room.id}`}> Join Room</Link></Button>
+                </CardFooter>}
         </Card>
     )
 }
