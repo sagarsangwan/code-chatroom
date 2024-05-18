@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -47,7 +46,6 @@ export function CreateRoomForm() {
             setIsLoading(true)
             const method = "POST";
             const res = await PostData(values, method)
-            console.log(res)
             // got to the home and clear the form and clear the cache
             window.location.href = "/"
 
