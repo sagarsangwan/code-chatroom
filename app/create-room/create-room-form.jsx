@@ -1,4 +1,6 @@
 "use client"
+import React from "react"
+import { useState } from "react"
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -15,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import PostData from "@/lib/data-access/postRoom"
+import { revalidatePath } from "next/cache"
 
 
 
@@ -28,6 +31,7 @@ const formSchema = z.object({
 })
 
 export function CreateRoomForm() {
+    const [isLoading, setIsLoading] = useState(false);
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -39,78 +43,99 @@ export function CreateRoomForm() {
     })
 
     async function onSubmit(values) {
-        const res = await PostData(values)
-        console.log(res)
+        try {
+            setIsLoading(true)
+            const method = "POST";
+            const res = await PostData(values, method)
+            console.log(res)
+            // got to the home and clear the form and clear the cache
+            window.location.href = "/"
+
+
+        }
+        catch (error) {
+            console.log(error)
+        }
+        finally {
+            //  add a time out to show the loader
+
+            setIsLoading(false)
+
+        }
+        // revalidatePath("/")
     }
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} >
-                <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>
-                                Project Name
-                            </FormLabel>
-                            <FormControl>
-                                <Input {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="description"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>
-                                Description
-                            </FormLabel>
-                            <FormControl>
-                                <Textarea {...field} />
+        isLoading ? (
+            <div>Loading...</div> // This is the loader
+        ) : (
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} >
+                    <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>
+                                    Project Name
+                                </FormLabel>
+                                <FormControl>
+                                    <Input {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="description"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>
+                                    Description
+                                </FormLabel>
+                                <FormControl>
+                                    <Textarea {...field} />
 
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="github_repo"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>
-                                Github Repo Link
-                            </FormLabel>
-                            <FormControl>
-                                <Input {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="primary_programming_language"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>
-                                Primary Programming Language
-                            </FormLabel>
-                            <FormControl>
-                                <Input {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="github_repo"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>
+                                    Github Repo Link
+                                </FormLabel>
+                                <FormControl>
+                                    <Input {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="primary_programming_language"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>
+                                    Primary Programming Language
+                                </FormLabel>
+                                <FormControl>
+                                    <Input {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
 
-                <Button type="submit" className="mt-4" >Submit</Button>
-            </form>
+                    <Button type="submit" className="mt-4" >Submit</Button>
+                </form>
 
-        </Form>
+            </Form>)
     )
 
 }
